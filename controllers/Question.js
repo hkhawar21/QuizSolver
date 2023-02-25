@@ -1,6 +1,16 @@
 import prisma from "../prisma-client/client.js";
 import ResponseMessage from "../utils/ResponseMessage.js";
 
+export async function getQuestionById(req, res) {
+  const { id } = req.params;
+  try {
+    const question = await prisma.question.findUnique({ id });
+    return ResponseMessage(res, 201, question, true, null);
+  } catch (error) {
+    return ResponseMessage(res, 500, null, false, [error.message]);
+  }
+}
+
 export async function getAllQuestions(req, res) {
   try {
     const questions = await prisma.question.findMany();
@@ -12,14 +22,6 @@ export async function getAllQuestions(req, res) {
 
 export async function createQuestion(req, res) {
   const { title, quizId, answers, mandatory, answer } = req.body;
-
-  console.log(answers);
-
-  // quizId    Int
-  // title     String
-  // answers   String[]
-  // mandatory Boolean
-  // answer    String
 
   // Checking if similar question already exists
   const questionExists = await prisma.question.findFirst({
