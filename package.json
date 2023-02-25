@@ -1,0 +1,25 @@
+{
+  "name": "QuizSolver",
+  "version": "1.0.0",
+  "description": "A test task for a future project",
+  "main": "index.js",
+  "repository": "git@github.com:hkhawar21/QuizSolver.git",
+  "author": "hkhawar21 <hassankhawar21@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "start:prod": "SET NODE_ENV=production& nodemon src/app.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.10.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "prisma": "^4.10.1"
+  },
+  "type": "module"
+}
