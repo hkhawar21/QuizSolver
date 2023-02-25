@@ -1,6 +1,16 @@
 import prisma from "../prisma-client/client.js";
 import ResponseMessage from "../utils/ResponseMessage.js";
 
+export async function getQuizById(req, res) {
+  const { id } = req.params;
+  try {
+    const quiz = await prisma.quiz.findUnique({ id });
+    return ResponseMessage(res, 201, quiz, true, null);
+  } catch (error) {
+    return ResponseMessage(res, 500, null, false, [error.message]);
+  }
+}
+
 export async function getAllQuiz(req, res) {
   try {
     const quiz = await prisma.quiz.findMany();
